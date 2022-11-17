@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        构造无向图最小生成树(Prim算法) - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> and with them came the Spring </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>GardenKitten</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%9C%E4%B8%BA%E4%BE%8B%E5%AD%90%E7%9A%84%E6%97%A0%E5%90%91%E5%9B%BE"><span class="toc-text">作为例子的无向图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MGraph-java"><span class="toc-text">MGraph.java</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PrimTest-java"><span class="toc-text">PrimTest.java</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">运行结果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E7%9A%84%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="toc-text">构造的最小生成树</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> and with them came the Spring </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        构造无向图最小生成树(Prim算法)
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-11-17 23:09:01</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>参考了<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1E4411H73v?t=1.2">【尚硅谷】数据结构与算法（Java数据结构与算法）</a><br>以及<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nJ411V7bd?t=1.0">数据结构与算法基础（青岛大学-王卓）</a></p>
+<p>后者的算法思路讲解更加清晰，而前者的代码实现更加详细，最好两边都看一下加深理解。非常感谢这两位老师！<br>算法思想在网上已经有非常多讲解了，在此就不再赘述，直接放代码。</p>
+<p>使用java进行实现，假设结点数据类型为char，边的权重数据类型为int，以0索引的顶点开始构造最小生成树<br>代码文件一共有两个，分别是定义了MGraph对象的MGraph.java和作为主函数的PrimTest.java<br>在MGraph类中的成员方法prim()实现了构造无向图最小生成树，并将最小生成树的每条边及其权重在控制台中输出。</p>
+<p>代码新手，如有不足还请海涵。</p>
+<h1 id="作为例子的无向图"><a href="#作为例子的无向图" class="headerlink" title="作为例子的无向图"></a>作为例子的无向图</h1><p><img src="https://raw.githubusercontent.com/GardenKitten/Picbed/main/blog_files/img/mstree1.jpg" alt="无向图"></p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><h2 id="MGraph-java"><a href="#MGraph-java" class="headerlink" title="MGraph.java"></a>MGraph.java</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MGraph</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> vertexNum;<span class="comment">//结点数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">char</span>[] vertexData;<span class="comment">//结点数据</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span>[][] weight;<span class="comment">//边的权重</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">INFINITE</span> <span class="operator">=</span> Integer.MAX_VALUE;<span class="comment">//将int最大值看作无穷大</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MGraph</span><span class="params">(<span class="type">int</span> vertexNum, <span class="type">char</span>[] vertexData, <span class="type">int</span>[][] weight)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.vertexNum = vertexNum;</span><br><span class="line">        <span class="built_in">this</span>.weight = weight;</span><br><span class="line">        <span class="built_in">this</span>.vertexData = <span class="keyword">new</span> <span class="title class_">char</span>[vertexNum];<span class="comment">//赋值前一定要先初始化</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; vertexNum; i++) &#123;</span><br><span class="line">            <span class="built_in">this</span>.vertexData[i] = vertexData[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; vertexNum; j++) &#123;</span><br><span class="line">                <span class="built_in">this</span>.weight[i][j] = weight[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> startVerx 开始构建最小生成树的顶点的下标</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">prim</span><span class="params">(<span class="type">int</span> startVerx)</span> &#123;</span><br><span class="line">        <span class="comment">//记录结点是否已被收入最小生成树，默认初始值为false</span></span><br><span class="line">        <span class="type">boolean</span>[] contains = <span class="keyword">new</span> <span class="title class_">boolean</span>[vertexNum];</span><br><span class="line">        <span class="comment">//将开始顶点标记为已收入</span></span><br><span class="line">        contains[startVerx] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//记录一条边的两个结点下标</span></span><br><span class="line">        <span class="comment">//v1为已收入的结点，v2为未收入的结点</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">v1</span> <span class="operator">=</span> -<span class="number">1</span>, v2 = -<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">minWeight</span> <span class="operator">=</span> INFINITE;<span class="comment">//初始化为“无限大”</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历一次找到一条符合条件的边</span></span><br><span class="line">        <span class="comment">//最小生成树中有“顶点数-1”条边，所以从1开始遍历</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">1</span>; k &lt; vertexNum; k++) &#123;</span><br><span class="line">            <span class="comment">//遍历已被收入的边</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; vertexNum; i++) &#123;</span><br><span class="line">                <span class="comment">//遍历未被收入的边</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; vertexNum; j++) &#123;</span><br><span class="line">                    <span class="comment">//如果找到最小边，就修改minWeight的值并记录顶点</span></span><br><span class="line">                    <span class="comment">//contains[i] &amp;&amp; !contains[j]: 防止出现回路</span></span><br><span class="line">                    <span class="keyword">if</span> (contains[i] &amp;&amp; !contains[j] &amp;&amp; weight[i][j] &lt; minWeight) &#123;</span><br><span class="line">                        minWeight = weight[i][j];</span><br><span class="line">                        v1 = i;</span><br><span class="line">                        v2 = j;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果遍历了整个邻接矩阵仍未找到符合要求的边，说明该图不连通</span></span><br><span class="line">            <span class="comment">//此时退出循环并报错</span></span><br><span class="line">            <span class="keyword">if</span> (minWeight == INFINITE) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;该图不连通，无法构造最小生成树！&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//打印已找到的边</span></span><br><span class="line">            System.out.println(<span class="string">&quot;(&quot;</span> + vertexData[v1] + <span class="string">&quot;,&quot;</span> + vertexData[v2] + <span class="string">&quot;) &quot;</span> + minWeight);</span><br><span class="line">            <span class="comment">//重置minWeight</span></span><br><span class="line">            minWeight = INFINITE;</span><br><span class="line">            <span class="comment">//将v2也收入到最小生成树中</span></span><br><span class="line">            contains[v2]=<span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//--getter and setter--</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getVertexNum</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> vertexNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setVertexNum</span><span class="params">(<span class="type">int</span> vertexNum)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.vertexNum = vertexNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">char</span>[] getVertexData() &#123;</span><br><span class="line">        <span class="keyword">return</span> vertexData;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setVertexData</span><span class="params">(<span class="type">char</span>[] vertexData)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; vertexNum; i++) &#123;</span><br><span class="line">            <span class="built_in">this</span>.vertexData[i] = vertexData[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[][] getWeight() &#123;</span><br><span class="line">        <span class="keyword">return</span> weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setWeight</span><span class="params">(<span class="type">int</span>[][] weight)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; vertexNum; i++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; vertexNum; j++)</span><br><span class="line">                <span class="built_in">this</span>.weight[i][j] = weight[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="PrimTest-java"><a href="#PrimTest-java" class="headerlink" title="PrimTest.java"></a>PrimTest.java</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PrimTest</span> &#123;</span><br><span class="line">    <span class="comment">//将int最大值看作无穷大</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">char</span>[] data = &#123;<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;E&#x27;</span>, <span class="string">&#x27;F&#x27;</span>&#125;;</span><br><span class="line">        <span class="type">int</span>[][] weight = <span class="keyword">new</span> <span class="title class_">int</span>[][]&#123;</span><br><span class="line">                &#123;<span class="number">0</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">5</span>, MGraph.INFINITE, MGraph.INFINITE&#125;,</span><br><span class="line">                &#123;<span class="number">6</span>, <span class="number">0</span>, <span class="number">5</span>, MGraph.INFINITE, <span class="number">3</span>, MGraph.INFINITE&#125;,</span><br><span class="line">                &#123;<span class="number">1</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span>&#125;,</span><br><span class="line">                &#123;<span class="number">5</span>, MGraph.INFINITE, <span class="number">5</span>, <span class="number">0</span>, MGraph.INFINITE, <span class="number">2</span>&#125;,</span><br><span class="line">                &#123;MGraph.INFINITE, <span class="number">3</span>, <span class="number">6</span>, MGraph.INFINITE, <span class="number">0</span>, <span class="number">6</span>&#125;,</span><br><span class="line">                &#123;MGraph.INFINITE, MGraph.INFINITE, <span class="number">4</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">0</span>&#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="type">MGraph</span> <span class="variable">graph</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MGraph</span>(data.length, data, weight);</span><br><span class="line">        graph.prim(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><blockquote>
+<p>(A,C) 1<br>(C,F) 4<br>(F,D) 2<br>(C,B) 5<br>(B,E) 3</p>
+</blockquote>
+<h1 id="构造的最小生成树"><a href="#构造的最小生成树" class="headerlink" title="构造的最小生成树"></a>构造的最小生成树</h1><p><img src="https://raw.githubusercontent.com/GardenKitten/Picbed/main/blog_files/img/mstrese2.jpg" alt="最小生成树"></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>
