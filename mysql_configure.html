@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        配置MySQL常见错误解决 - The Secret Graden
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> and with them came the Spring </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>GardenKitten</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%A5%E9%94%99"><span class="toc-text">报错</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-x2F-Remove-of-the-Service-Denied"><span class="toc-text">Install&#x2F;Remove of the Service Denied!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Access-denied-for-user-%E2%80%98root%E2%80%98-%E2%80%99localhost%E2%80%99"><span class="toc-text">Access denied for user ‘root‘@’localhost’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#failed-to-set-datadir-to-XXX"><span class="toc-text">failed to set datadir to XXX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E7%94%9F%E7%B3%BB%E7%BB%9F%E9%94%99%E8%AF%AF-2-%E7%B3%BB%E7%BB%9F%E6%89%BE%E4%B8%8D%E5%88%B0%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6"><span class="toc-text">发生系统错误 2 系统找不到指定文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-%E6%9C%8D%E5%8A%A1%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8-%E6%9C%8D%E5%8A%A1%E6%B2%A1%E6%9C%89%E6%8A%A5%E5%91%8A%E4%BB%BB%E4%BD%95%E9%94%99%E8%AF%AF"><span class="toc-text">MySQL 服务无法启动 服务没有报告任何错误</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> and with them came the Spring </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        配置MySQL常见错误解决
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-12-08 19:08:03</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>按教程安装并配置MySQL的过程中遇到了五花八门的报错，感觉算是把能踩的坑都踩完了，写一篇博客记录一下常见的报错及其解决方案。<br>使用zip安装文件进行配置，参考教程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42869365/article/details/83472466">MySQL下载与安装</a></p>
+<h1 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h1><h2 id="Install-x2F-Remove-of-the-Service-Denied"><a href="#Install-x2F-Remove-of-the-Service-Denied" class="headerlink" title="Install&#x2F;Remove of the Service Denied!"></a>Install&#x2F;Remove of the Service Denied!</h2><p>在输入<code>mysqld --install</code>后报错：<code>Install/Remove of the Service Denied!</code></p>
+<p><strong>解决方法：</strong><br>使用管理员权限运行cmd，并再次输入<code>mysqld --install</code>即可：<br><img src="https://raw.githubusercontent.com/GardenKitten/Picbed/main/blog_files/img/runcmd.png" alt="管理员权限运行cmd"></p>
+<hr>
+<h2 id="Access-denied-for-user-‘root‘-’localhost’"><a href="#Access-denied-for-user-‘root‘-’localhost’" class="headerlink" title="Access denied for user ‘root‘@’localhost’"></a>Access denied for user ‘root‘@’localhost’</h2><p>大部分教程中都会提到“mysql初始密码为空，所以第一次输密码时直接按回车即可”，但我在安装时却遇到了报错：<br><img src="https://raw.githubusercontent.com/GardenKitten/Picbed/main/blog_files/img/error03.png"></p>
+<p><strong>解决方法：</strong><br>出现这种情况是因为在前面使用<code>mysqld --initialize --console</code>进行初始化时已经生成了初始密码。<br>在控制台中找到<code>A temporary password is generated for root@localhost: </code>字段，后面即为初始密码：<br><img src="https://raw.githubusercontent.com/GardenKitten/Picbed/main/blog_files/img/passwd.png"><br>再次执行<code>mysql -u root -p</code>后输入上述密码即可成功登录：<br><img src="https://raw.githubusercontent.com/GardenKitten/Picbed/main/blog_files/img/login.png"><br>如果已经关闭了控制台，请在根目录下的data文件夹里找到后缀名为<code>err</code>的文件，打开并找到<code>A temporary password is generated for root@localhost: </code>字段，后面即为初始密码。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42784277/article/details/106909880">参考教程</a></p>
+<hr>
+<h2 id="failed-to-set-datadir-to-XXX"><a href="#failed-to-set-datadir-to-XXX" class="headerlink" title="failed to set datadir to XXX"></a>failed to set datadir to XXX</h2><p><img src="https://raw.githubusercontent.com/GardenKitten/Picbed/main/blog_files/img/error02.png"></p>
+<p><strong>解决方法：</strong><br>输入<code>mysqld --initialize --user=mysql --console</code><br>随后输入<code>mysqld -install</code><br>如果出现<code>The service already exits!</code>的提示则输入<code>sc delete mysql</code>，并再次输入<code>mysqld -install</code></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hanhanwanghaha/article/details/105599321">参考教程</a></p>
+<hr>
+<h2 id="发生系统错误-2-系统找不到指定文件"><a href="#发生系统错误-2-系统找不到指定文件" class="headerlink" title="发生系统错误 2 系统找不到指定文件"></a>发生系统错误 2 系统找不到指定文件</h2><p>使用命令<code>net start mysql</code>后出现报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">发生系统错误 2。 </span><br><span class="line">系统找不到指定文件。</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong><br>使用cmd在根目录的bin文件夹路径下按顺序输入：<br><code>mysqld --remove</code>→<code>mysqld --install</code>→<code>net start mysql</code>即可解决<br><img src="https://raw.githubusercontent.com/GardenKitten/Picbed/main/blog_files/img/succeed.png"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sunzixiao/article/details/125783977">参考教程</a></p>
+<hr>
+<h2 id="MySQL-服务无法启动-服务没有报告任何错误"><a href="#MySQL-服务无法启动-服务没有报告任何错误" class="headerlink" title="MySQL 服务无法启动 服务没有报告任何错误"></a>MySQL 服务无法启动 服务没有报告任何错误</h2><p>使用命令<code>net start mysql</code>后并启动服务后出现报错：<br><img src="https://raw.githubusercontent.com/GardenKitten/Picbed/main/blog_files/img/error01.png"></p>
+<p><strong>解决方法：</strong><br>使用命令<code>mysqld --console</code>查看错误信息，具体问题具体分析，我遇到的是前面的“failed to set datadir to XXX”错误。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>
