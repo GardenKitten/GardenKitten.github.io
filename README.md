@@ -1,3 +1,3 @@
 # GardenKitten.github.io
 my blog </br>
-if anyone interested-> http://gardencat.xyz
+if anyone interested-> https://gardenkitten.github.io/
